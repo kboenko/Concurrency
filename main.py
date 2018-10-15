@@ -13,9 +13,15 @@ def generate(qty):
     return [randint(1,10) for number in range(1, qty + 1)]
 
 def sum_arr(i, arr, res):
-    res[i] = sum(arr)
+    s_arr = 0
+    for j in arr:
+        s_arr += j
+        print(str(i) + ': ' + str(s_arr))
+        time.sleep(1)
+
+    res[i] = s_arr
     print('Cумма массива ' + str(i) + ': ' + str(res[i]))
-    time.sleep(5)
+
     return res
 
 def sum_numbers(numbersQty, threadQty):
@@ -44,7 +50,6 @@ def sum_numbers(numbersQty, threadQty):
     while first + step <= numbersQty:
         t = Thread(target=sum_arr, name = 'Thread #' + str(i), args=(i, floatNums[first : last], results))
         t.start()
-        print(t.name)
         first += step
         last += step
         i += 1
@@ -52,12 +57,13 @@ def sum_numbers(numbersQty, threadQty):
         if first + step > numbersQty and part > 0:
             t = Thread(target=sum_arr, name='Thread #' + str(i), args=(i, floatNums[first:], results))
             t.start()
-            print(t.name)
 
     for i in results.keys():
         summa += results[i]
 
+    print('*******************')
     print(summa)
+    print('*******************')
     print(sum(floatNums))
 
     return summa
