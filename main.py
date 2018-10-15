@@ -41,7 +41,6 @@ def sum_numbers(numbersQty, threadQty):
     while first + step <= numbersQty:
         t = Thread(target=sum_arr, name = 'Thread #' + str(i), args=(i, floatNums[first : last], results))
         t.start()
-        t.join()
         first += step
         last += step
         i += 1
@@ -49,7 +48,6 @@ def sum_numbers(numbersQty, threadQty):
         if first + step > numbersQty and part > 0:
             t = Thread(target=sum_arr, name='Thread #' + str(i), args=(i, floatNums[first:], results))
             t.start()
-            t.join()
 
     for i in results.keys():
         summa += results[i]
