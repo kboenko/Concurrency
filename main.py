@@ -1,6 +1,7 @@
 from threading import Thread
 from random import random
 from random import randint
+import time
 
 nums = []
 
@@ -13,6 +14,7 @@ def generate(qty):
 
 def sum_arr(i, arr, res):
     res[i] = sum(arr)
+    time.sleep(1)
     return res
 
 def sum_numbers(numbersQty, threadQty):
